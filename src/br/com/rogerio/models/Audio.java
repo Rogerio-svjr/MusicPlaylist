@@ -4,13 +4,15 @@ public class Audio {
     private String title;
     private int totalReproductions;
     private int totalLikes;
+    private boolean liked;
     private double rating;
 
-    void like() {
+    public void like() {
         this.totalLikes++;
+        this.liked = true;
     }
 
-    void play() {
+    public void play() {
         this.totalReproductions++;
     }
 
