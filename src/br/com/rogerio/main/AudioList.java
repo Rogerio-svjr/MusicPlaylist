@@ -12,8 +12,12 @@ public class AudioList {
     }
 
     static void listMusic(ArrayList<Music> musics) {
-        int track = 0;// Track to play
+        int track = 0; // Track to play
+        String liked;  // Like music
         Scanner scan = new Scanner(System.in);
+        Scanner scan2 = new Scanner(System.in);
+
+        // Prints each music name and its number on the list
         System.out.println("-----------------------");
         for (Music m : musics) {
             System.out.println(musics.indexOf(m)+1 + " - " + m.getTitle());
@@ -22,16 +26,24 @@ public class AudioList {
 
         // User chooses which track will play
         System.out.print("Play track: ");
-        track = scan.nextInt() - 1;
-        Audio audio = musics.get(track);
-        // PLays the chosen track
-        audio.play();
-        System.out.println(audio.getTotalReproductions());
+        track = scan.nextInt() - 1;         // User enters the desired music's number
+        Audio audio = musics.get(track);    // Gets the music object
+        audio.play();                       // PLays the chosen music
+        // User chooses whether to like the music
+        System.out.print("Like this music? [Y/N]  ");
+        liked = scan2.nextLine().strip().toUpperCase();
+        if (liked.equals("Y")) {
+                audio.like();         
+        }
     }
 
     static void listPodcast(ArrayList<Podcast> podcasts) {
-        int track = 0;// Track to play
+        int track = 0;  // Track to play
+        String liked;  // Like music
         Scanner scan = new Scanner(System.in);
+        Scanner scan2 = new Scanner(System.in);
+
+        // Prints each podcast name and its number on the list
         System.out.println("-----------------------");
         for (Podcast p : podcasts) {
             System.out.println(podcasts.indexOf(p)+1 + " - " +p.getTitle());
@@ -42,9 +54,13 @@ public class AudioList {
         System.out.print("Play track: ");
         track = scan.nextInt() - 1;
         Audio audio = podcasts.get(track);
-        // PLays the chosen track
         audio.play();
-        System.out.println(audio.getTotalReproductions());
+        // User chooses whether to like the podcast
+        System.out.print("Like this podcast? [Y/N]  ");
+        liked = scan2.nextLine().strip().toUpperCase();
+        if (liked.equals("Y")) {
+                audio.like();         
+        }
     }
 
     static void addMusic(ArrayList<Music> musics) {
@@ -59,7 +75,6 @@ public class AudioList {
         music.setArtist(scan.nextLine());
         System.out.print("Type the music genre: ");
         music.setGenre(scan.nextLine());
-        System.out.println("--------------------------");
         // Adds the object to the music array
         musics.add(music);
     }
@@ -74,7 +89,6 @@ public class AudioList {
         podcast.setHost(scan.nextLine());
         System.out.print("Type the podcast description: ");
         podcast.setDescription(scan.nextLine());
-        System.out.print("--------------------------");
         // Adds the object to the podcast array
         podcasts.add(podcast);
     }

@@ -14,6 +14,7 @@ public class Audio {
 
     public void play() {
         this.totalReproductions++;
+        System.out.println("Now playing: " + this.title);
     }
 
     public String getTitle() {
@@ -34,5 +35,9 @@ public class Audio {
 
     public double getRating() {
         return rating;
+    }
+
+    public boolean isLiked() {
+        return liked;
     }
 }

@@ -1,6 +1,5 @@
 package br.com.rogerio.main;
 
-import br.com.rogerio.models.Audio;
 import br.com.rogerio.models.Music;
 import br.com.rogerio.models.Podcast;
 
@@ -41,8 +40,8 @@ public class AudioPlayer {
                              1 - Music
                              2 - Podcast\n
                             Your choice: """);
-                            menu = keyboard.nextInt();
-                    // Lists the musics and podcasts
+                    menu = keyboard.nextInt();
+                    // Lists and play the audios
                     if (menu == 1) {
                         AudioList.listMusic(musics);
                     }
@@ -50,7 +49,8 @@ public class AudioPlayer {
                         AudioList.listPodcast(podcasts);
                     }
                     break;
-                case 2:
+                case 2: // "Add track" choice
+                    // Separate musics from podcasts
                     System.out.print("""
                             -----------------------
                                   ADD TRACK\n
@@ -59,6 +59,7 @@ public class AudioPlayer {
                              2 - Podcast\n
                             Your choice: """);
                     menu = keyboard.nextInt();
+                    // Asks audio information and add them to their respective lists
                     if (menu == 1) {
                         AudioList.addMusic(musics);
                     }
@@ -66,7 +67,24 @@ public class AudioPlayer {
                         AudioList.addPodcast(podcasts);
                     }
                     break;
-                case 3:
+                case 3: // "Liked tracks" choice
+                    int likedIndex = 1;
+                    System.out.println("""
+                            -----------------------
+                                LIKED TRACKS
+                            """);
+                    for (Music m : musics) {
+                        if (m.isLiked()) {
+                            System.out.println(likedIndex + " - " + m.getTitle());
+                            likedIndex++;
+                        }
+                    }
+                    for (Podcast p : podcasts) {
+                        if (p.isLiked()) {
+                            System.out.println(likedIndex + " - " + p.getTitle());
+                            likedIndex++;
+                        }
+                    }
                     break;
                 case 4:
                     player = false;
